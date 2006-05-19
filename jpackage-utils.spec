@@ -45,7 +45,7 @@ Utilities from the JPackage Project <http://www.jpackage.org/>:
 %patch0 -p1
 
 %build
-echo "JPackage release %{jpackage_distver} (%{distribution} port) for %{buildarch}" > etc/jpackage-release
+echo "JPackage release %{jpackage_distver} (PLD Linux port) for %{buildarch}" > etc/jpackage-release
 
 %install
 rm -rf $RPM_BUILD_ROOT
