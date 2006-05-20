@@ -3,7 +3,7 @@
 Summary:	JPackage utilities
 Name:		jpackage-utils
 Version:	1.6.6
-Release:	1
+Release:	2
 Epoch:		0
 License:	BSD-like
 URL:		http://www.jpackage.org/
@@ -12,7 +12,6 @@ Source0:	%{name}-%{version}.tar.bz2
 Patch0:		%{name}-pdksh.patch
 Group:		Development/Languages/Java
 BuildArch:	noarch
-ExclusiveArch:	i586 i686 pentium3 pentium4 athlon %{x8664} noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Requires:	/bin/egrep
 Requires:	/bin/sed
