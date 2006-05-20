@@ -59,7 +59,7 @@ for dir in \
 done
 
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_sysconfdir}/java,${_jvmdir}} \
-	$RPM_BUILD_ROOT{/usr/lib/rpm,${_jvmdir},${_javadocdir}} \
+	$RPM_BUILD_ROOT{/usr/lib/rpm,/etc/env.d,${_jvmdir},${_javadocdir}} \
 	$RPM_BUILD_ROOT{${_jvmjardir},${_jvmprivdir},${_jvmlibdir},${_jvmdatadir}} \
 	$RPM_BUILD_ROOT{${_jvmsysconfdir},${_jvmcommonlibdir},${_jvmcommondatadir}} \
 	$RPM_BUILD_ROOT{${_jvmcommonsysconfdir},${_javadir},${_jnidir}} \
@@ -121,6 +121,9 @@ cat <<EOF > %{name}-%{version}.files
 ${_javadir}-utils/*
 EOF
 
+cat << EOF >$RPM_BUILD_ROOT/etc/env.d/JAVA_HOME
+JAVA_HOME="`. %{_javadir}-utils/java-functions; set_jvm; echo $JAVA_HOME`"
+EOF
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -133,4 +136,5 @@ rm -rf $RPM_BUILD_ROOT
 %config %{_sysconfdir}/java/jpackage-release
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/java/java.conf
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/java/font.properties
+%attr(644,root,root) %config(noreplace,missingok) %verify(not md5 mtime size) /etc/env.d/*
 /usr/lib/rpm/macros.java
