@@ -1,9 +1,8 @@
-
 %define 	jpackage_distver 1.6
 Summary:	JPackage utilities
 Name:		jpackage-utils
 Version:	1.6.6
-Release:	3
+Release:	3.1
 Epoch:		0
 License:	BSD-like
 URL:		http://www.jpackage.org/
@@ -12,10 +11,12 @@ Source0:	%{name}-%{version}.tar.bz2
 Patch0:		%{name}-pdksh.patch
 Patch1:		%{name}-rpm_macros_ignore_env.patch
 Group:		Development/Languages/Java
-BuildArch:	noarch
-BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 Requires:	/bin/egrep
 Requires:	/bin/sed
+BuildArch:	noarch
+BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define		_rpmlibdir /usr/lib/rpm
 
 %description
 Utilities from the JPackage Project <http://www.jpackage.org/>:
@@ -35,10 +36,17 @@ Utilities from the JPackage Project <http://www.jpackage.org/>:
 - %{_sysconfdir}/java/jpackage-release string identifying the
   currently installed JPackage release
 - %{_sysconfdir}/java/java.conf system-wide Java configuration file
-- %{_sysconfdir}/rpm/macros.jpackage RPM macros for Java packagers and
-  developers
 - %{_docdir}/%{name}-%{version}/jpackage-policy Java packaging policy
   for packagers and developers of JPackage Project
+
+%package -n rpm-javaprov
+Summary:	RPM macros for java packages build
+Group:		Applications/File
+Requires:	%{name} = %{epoch}:%{version}-%{release}
+Requires:	rpm-build
+
+%description -n rpm-javaprov
+RPM macros for building java packages.
 
 %prep
 %setup -q
@@ -60,7 +68,7 @@ for dir in \
 done
 
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_sysconfdir}/java,${_jvmdir}} \
-	$RPM_BUILD_ROOT{/usr/lib/rpm,/etc/env.d,${_jvmdir},${_javadocdir}} \
+	$RPM_BUILD_ROOT{%{_rpmlibdir},/etc/env.d,${_jvmdir},${_javadocdir}} \
 	$RPM_BUILD_ROOT{${_jvmjardir},${_jvmprivdir},${_jvmlibdir},${_jvmdatadir}} \
 	$RPM_BUILD_ROOT{${_jvmsysconfdir},${_jvmcommonlibdir},${_jvmcommondatadir}} \
 	$RPM_BUILD_ROOT{${_jvmcommonsysconfdir},${_javadir},${_jnidir}} \
@@ -102,7 +110,7 @@ awk 'BEGIN {cont=0}
 {cont = $0 ~ /\\$/}
 /\\\\$/ { print $0 "\\"; next }
 $0 !~ /^%%/ {print}
-' misc/macros.jpackage > $RPM_BUILD_ROOT/usr/lib/rpm/macros.java
+' misc/macros.jpackage > $RPM_BUILD_ROOT%{_rpmlibdir}/macros.java
 
 cat <<EOF > %{name}-%{version}.files
 %dir ${_jvmdir}
@@ -138,4 +146,6 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/java/java.conf
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/java/font.properties
 %attr(644,root,root) %config(noreplace,missingok) %verify(not md5 mtime size) /etc/env.d/*
-/usr/lib/rpm/macros.java
+
+%files -n rpm-javaprov
+%{_rpmlibdir}/macros.java
