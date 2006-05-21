@@ -3,13 +3,14 @@
 Summary:	JPackage utilities
 Name:		jpackage-utils
 Version:	1.6.6
-Release:	2
+Release:	3
 Epoch:		0
 License:	BSD-like
 URL:		http://www.jpackage.org/
 Source0:	%{name}-%{version}.tar.bz2
 # Source0-md5:	85336e72018ecefa2f9999fc4e6f3eb8
 Patch0:		%{name}-pdksh.patch
+Patch1:		%{name}-rpm_macros_ignore_env.patch
 Group:		Development/Languages/Java
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -42,6 +43,7 @@ Utilities from the JPackage Project <http://www.jpackage.org/>:
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 echo "JPackage release %{jpackage_distver} (PLD Linux port) for %{buildarch}" > etc/jpackage-release

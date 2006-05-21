@@ -1,0 +1,20 @@
+diff -dur -x '*~' jpackage-utils-1.6.6.orig/misc/macros.jpackage jpackage-utils-1.6.6/misc/macros.jpackage
+--- jpackage-utils-1.6.6.orig/misc/macros.jpackage	2005-09-19 00:46:48.000000000 +0000
++++ jpackage-utils-1.6.6/misc/macros.jpackage	2006-05-21 17:49:06.000000000 +0000
+@@ -91,14 +91,14 @@
+ #
+ # Current default JVM home.
+ #
+-%java_home      %(. %{_javadir}-utils/java-functions; set_jvm; echo $JAVA_HOME)
++%java_home      %(unset JAVA_HOME; . %{_javadir}-utils/java-functions; set_jvm; echo $JAVA_HOME)
+ 
+ #==============================================================================
+ # ---- default Java commands
+ 
+ %ant            JAVA_HOME=%{java_home} ant
+ %jar            %{java_home}/bin/jar
+-%java           %(. %{_javadir}-utils/java-functions; set_javacmd; echo $JAVACMD)
++%java           %(unset JAVACMD; . %{_javadir}-utils/java-functions; set_javacmd; echo $JAVACMD)
+ %javac          %{java_home}/bin/javac
+ %javadoc        %{java_home}/bin/javadoc
+ 
