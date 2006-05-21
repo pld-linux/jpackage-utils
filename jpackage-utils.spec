@@ -1,16 +1,17 @@
 %define 	jpackage_distver 1.6
 Summary:	JPackage utilities
+Summary(pl):	Narzêdzia JPackage
 Name:		jpackage-utils
 Version:	1.6.6
 Release:	3.1
 Epoch:		0
 License:	BSD-like
-URL:		http://www.jpackage.org/
+Group:		Development/Languages/Java
 Source0:	%{name}-%{version}.tar.bz2
 # Source0-md5:	85336e72018ecefa2f9999fc4e6f3eb8
 Patch0:		%{name}-pdksh.patch
 Patch1:		%{name}-rpm_macros_ignore_env.patch
-Group:		Development/Languages/Java
+URL:		http://www.jpackage.org/
 Requires:	/bin/egrep
 Requires:	/bin/sed
 BuildArch:	noarch
@@ -39,14 +40,41 @@ Utilities from the JPackage Project <http://www.jpackage.org/>:
 - %{_docdir}/%{name}-%{version}/jpackage-policy Java packaging policy
   for packagers and developers of JPackage Project
 
+%description -l pl
+Narzêdzia z projektu JPackage <http://www.jpackage.org/>:
+
+- %{_bindir}/build-classpath tworzy ¶cie¿kê do klas (classpath) Javy w
+  przeno¶ny sposób
+- %{_bindir}/build-jar-repository tworzy repozytorium jar w przeno¶ny
+  sposób
+- %{_bindir}/rebuild-jar-repository przebudowuje repozytorium jar w
+  przeno¶ny sposób (po zmianie jvm)
+- %{_bindir}/build-classpath-directory tworzy ¶cie¿kê do klas
+  (classpath) Javy z katalogu
+- %{_bindir}/diff-jars pokazuje ró¿nice miêdzy zawarto¶ci± jarów
+- %{_bindir}/jvmjar instaluje rozszerzenia jvm
+- %{_datadir}/java-utils/java-functions to biblioteka funkcji skryptów
+  pow³oki dla aplikacji w Javie
+- %{_sysconfdir}/java/jpackage-release to ³añcuch okre¶laj±cy
+  aktualnie zainstalowane wydanie JPackage
+- %{_sysconfdir}/java/java.conf to ogólnosystemowy plik konfiguracyjny
+  Javy
+- %{_docdir}/%{name}-%{version}/jpackage-policy to polityka
+  pakietowania Javy dla osób pakietuj±cych i programistów z projektu
+  JPackage
+
 %package -n rpm-javaprov
-Summary:	RPM macros for java packages build
+Summary:	RPM macros for Java packages build
+Summary(pl):	Makra RPM-a do budowania pakietów Javy
 Group:		Applications/File
 Requires:	%{name} = %{epoch}:%{version}-%{release}
 Requires:	rpm-build
 
 %description -n rpm-javaprov
-RPM macros for building java packages.
+RPM macros for building Java packages.
+
+%description -n rpm-javaprov -l pl
+Makra RPM-a do budowania pakietów Javy.
 
 %prep
 %setup -q
@@ -76,9 +104,8 @@ install -d $RPM_BUILD_ROOT{%{_bindir},%{_sysconfdir}/java,${_jvmdir}} \
 	$RPM_BUILD_ROOT${_jnidir}-{ext,1.4.0,1.4.1,1.4.2,1.5.0} \
 	$RPM_BUILD_ROOT${_javadocdir}
 
-
-install -pm 755 bin/* ${RPM_BUILD_ROOT}%{_bindir}
-install -pm 644 etc/font.properties ${RPM_BUILD_ROOT}%{_sysconfdir}/java
+install -pm 755 bin/* $RPM_BUILD_ROOT%{_bindir}
+install -pm 644 etc/font.properties $RPM_BUILD_ROOT%{_sysconfdir}/java
 
 cat > etc/java.conf << EOF
 # System-wide Java configuration file                                -*- sh -*-
@@ -145,7 +172,8 @@ rm -rf $RPM_BUILD_ROOT
 %config %{_sysconfdir}/java/jpackage-release
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/java/java.conf
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/java/font.properties
-%attr(644,root,root) %config(noreplace,missingok) %verify(not md5 mtime size) /etc/env.d/*
+%config(noreplace,missingok) %verify(not md5 mtime size) /etc/env.d/*
 
 %files -n rpm-javaprov
+%defattr(644,root,root,755)
 %{_rpmlibdir}/macros.java
