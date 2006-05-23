@@ -60,19 +60,6 @@ Narzêdzia z projektu JPackage <http://www.jpackage.org/>:
   pakietowania Javy dla osób pakietuj±cych i programistów z projektu
   JPackage
 
-%package -n rpm-javaprov
-Summary:	RPM macros for Java packages build
-Summary(pl):	Makra RPM-a do budowania pakietów Javy
-Group:		Applications/File
-Requires:	%{name} = %{epoch}:%{version}-%{release}
-Requires:	rpm-build
-
-%description -n rpm-javaprov
-RPM macros for building Java packages.
-
-%description -n rpm-javaprov -l pl
-Makra RPM-a do budowania pakietów Javy.
-
 %prep
 %setup -q
 %patch0 -p1
