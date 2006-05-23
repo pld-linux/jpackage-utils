@@ -3,21 +3,18 @@ Summary:	JPackage utilities
 Summary(pl):	Narzêdzia JPackage
 Name:		jpackage-utils
 Version:	1.6.6
-Release:	3.1
+Release:	3.2
 Epoch:		0
 License:	BSD-like
 Group:		Development/Languages/Java
 Source0:	%{name}-%{version}.tar.bz2
 # Source0-md5:	85336e72018ecefa2f9999fc4e6f3eb8
 Patch0:		%{name}-pdksh.patch
-Patch1:		%{name}-rpm_macros_ignore_env.patch
 URL:		http://www.jpackage.org/
 Requires:	/bin/egrep
 Requires:	/bin/sed
 BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
-
-%define		_rpmlibdir /usr/lib/rpm
 
 %description
 Utilities from the JPackage Project <http://www.jpackage.org/>:
@@ -79,7 +76,6 @@ Makra RPM-a do budowania pakietów Javy.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 
 %build
 echo "JPackage release %{jpackage_distver} (PLD Linux port) for %{buildarch}" > etc/jpackage-release
@@ -96,7 +92,7 @@ for dir in \
 done
 
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_sysconfdir}/java,${_jvmdir}} \
-	$RPM_BUILD_ROOT{%{_rpmlibdir},/etc/env.d,${_jvmdir},${_javadocdir}} \
+	$RPM_BUILD_ROOT{/etc/env.d,${_jvmdir},${_javadocdir}} \
 	$RPM_BUILD_ROOT{${_jvmjardir},${_jvmprivdir},${_jvmlibdir},${_jvmdatadir}} \
 	$RPM_BUILD_ROOT{${_jvmsysconfdir},${_jvmcommonlibdir},${_jvmcommondatadir}} \
 	$RPM_BUILD_ROOT{${_jvmcommonsysconfdir},${_javadir},${_jnidir}} \
@@ -131,13 +127,6 @@ EOF
 install -pm 644 etc/java.conf $RPM_BUILD_ROOT%{_sysconfdir}/java
 install -pm 644 etc/jpackage-release $RPM_BUILD_ROOT%{_sysconfdir}/java
 install -pm 644 java-utils/* $RPM_BUILD_ROOT${_javadir}-utils
-awk 'BEGIN {cont=0}
-/^#/ { if (!cont) next }
-/^%%/ { if (cont) print; else print "%%define " substr($0,2) }
-{cont = $0 ~ /\\$/}
-/\\\\$/ { print $0 "\\"; next }
-$0 !~ /^%%/ {print}
-' misc/macros.jpackage > $RPM_BUILD_ROOT%{_rpmlibdir}/macros.java
 
 cat <<EOF > %{name}-%{version}.files
 %dir ${_jvmdir}
@@ -173,7 +162,3 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/java/java.conf
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/java/font.properties
 %config(noreplace,missingok) %verify(not md5 mtime size) /etc/env.d/*
-
-%files -n rpm-javaprov
-%defattr(644,root,root,755)
-%{_rpmlibdir}/macros.java
