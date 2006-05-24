@@ -3,7 +3,7 @@ Summary:	JPackage utilities
 Summary(pl):	Narzêdzia JPackage
 Name:		jpackage-utils
 Version:	1.6.6
-Release:	3.2
+Release:	4
 Epoch:		0
 License:	BSD-like
 Group:		Development/Languages/Java
