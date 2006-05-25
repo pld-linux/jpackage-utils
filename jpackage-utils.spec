@@ -3,7 +3,7 @@ Summary:	JPackage utilities
 Summary(pl):	Narzêdzia JPackage
 Name:		jpackage-utils
 Version:	1.6.6
-Release:	5
+Release:	6
 Epoch:		0
 License:	BSD-like
 Group:		Development/Languages/Java
@@ -14,7 +14,6 @@ URL:		http://www.jpackage.org/
 BuildRequires:	rpmbuild(macros) >= 1.300
 Requires:	/bin/egrep
 Requires:	/bin/sed
-BuildArch:	noarch
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
