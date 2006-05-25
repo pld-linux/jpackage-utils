@@ -135,5 +135,5 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_javadir}-*
 %dir %{_jnidir}
 %dir %{_jnidir}-*
-%dir %{_javadocdir}
+%docdir %{_javadocdir}
 %{_javadir}-utils/*
