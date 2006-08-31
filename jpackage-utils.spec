@@ -3,7 +3,7 @@ Summary:	JPackage utilities
 Summary(pl):	Narzêdzia JPackage
 Name:		jpackage-utils
 Version:	1.6.6
-Release:	8
+Release:	9
 Epoch:		0
 License:	BSD-like
 Group:		Development/Languages/Java
@@ -117,6 +117,9 @@ EOF
 rm -rf $RPM_BUILD_ROOT
 
 %post
+%env_update
+
+%postun
 %env_update
 
 %files
