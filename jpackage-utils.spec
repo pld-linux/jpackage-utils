@@ -3,7 +3,7 @@ Summary:	JPackage utilities
 Summary(pl):	Narzêdzia JPackage
 Name:		jpackage-utils
 Version:	1.6.6
-Release:	10
+Release:	11
 Epoch:		0
 License:	BSD-like
 Group:		Development/Languages/Java
@@ -109,8 +109,8 @@ install -pm 644 java-utils/* $RPM_BUILD_ROOT%{_javadir}-utils
 
 unset JAVA_HOME || :
 unset JAVACMD || :
-cat << EOF >$RPM_BUILD_ROOT/etc/env.d/JAVA_HOME
-JAVA_HOME="`. %{_javadir}-utils/java-functions; set_jvm; echo $JAVA_HOME`"
+cat << 'EOF' >$RPM_BUILD_ROOT/etc/env.d/JAVA_HOME
+JAVA_HOME=$(. %{_javadir}-utils/java-functions; set_jvm; echo $JAVA_HOME)
 EOF
 
 %clean
