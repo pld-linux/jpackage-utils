@@ -3,7 +3,7 @@ Summary:	JPackage utilities
 Summary(pl):	Narzêdzia JPackage
 Name:		jpackage-utils
 Version:	1.6.6
-Release:	11.1
+Release:	12
 Epoch:		0
 License:	BSD-like
 Group:		Development/Languages/Java
@@ -70,14 +70,28 @@ echo "JPackage release %{jpackage_distver} (PLD Linux port) for %{buildarch}" > 
 %install
 rm -rf $RPM_BUILD_ROOT
 
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_sysconfdir}/java,/etc/env.d} \
-	$RPM_BUILD_ROOT{%{_jvmdir},%{_javadocdir}} \
-	$RPM_BUILD_ROOT{%{_jvmjardir},%{_jvmprivdir},%{_jvmdatadir}} \
-	$RPM_BUILD_ROOT{%{_jvmsysconfdir},%{_jvmcommonlibdir},%{_jvmcommondatadir}} \
-	$RPM_BUILD_ROOT{%{_jvmcommonsysconfdir},%{_javadir},%{_jnidir}} \
+# arch independant
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_sysconfdir}/java,/etc/env.d,%{_javadocdir},%{_javadir}} \
+	$RPM_BUILD_ROOT{%{_jvmsysconfdir},%{_jvmcommondatadir},%{_jvmdatadir},%{_jvmcommonsysconfdir}} \
 	$RPM_BUILD_ROOT%{_javadir}-{utils,ext,1.4.0,1.4.1,1.4.2,1.5.0} \
-	$RPM_BUILD_ROOT%{_jnidir}-{ext,1.4.0,1.4.1,1.4.2,1.5.0} \
-	$RPM_BUILD_ROOT%{_javadocdir}
+
+# arch dependant
+install -d \
+	$RPM_BUILD_ROOT{%{_jvmdir},%{_jvmjardir},%{_jvmprivdir},%{_jvmcommonlibdir},%{_jnidir}} \
+	$RPM_BUILD_ROOT%{_jnidir}-{ext,1.4.0,1.4.1,1.4.2,1.5.0}
+
+%if "%{_lib}" != "lib"
+%define _ujvmdir			%{_prefix}/lib/jvm
+%define _ujvmjardir			%{_prefix}/lib/jvm-exports
+%define _ujvmprivdir		%{_prefix}/lib/jvm-private
+%define _ujvmcommonlibdir	%{_prefix}/lib/jvm-common
+%define _ujnidir			%{_prefix}/lib/java
+%define _ujvmlibdir			%{_prefix}/lib/jvm
+
+install -d \
+	$RPM_BUILD_ROOT{%{_ujvmdir},%{_ujvmjardir},%{_ujvmprivdir},%{_ujvmcommonlibdir},%{_ujnidir}} \
+	$RPM_BUILD_ROOT%{_ujnidir}-{ext,1.4.0,1.4.1,1.4.2,1.5.0}
+%endif
 
 install -pm 755 bin/* $RPM_BUILD_ROOT%{_bindir}
 install -pm 644 etc/font.properties $RPM_BUILD_ROOT%{_sysconfdir}/java
@@ -129,18 +143,30 @@ rm -rf $RPM_BUILD_ROOT
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/java/java.conf
 %config(noreplace) %verify(not md5 mtime size) %{_sysconfdir}/java/font.properties
 %config(noreplace,missingok) %verify(not md5 mtime size) /etc/env.d/*
+
+# arch dependant
 %dir %{_jvmdir}
 %dir %{_jvmjardir}
 %dir %{_jvmprivdir}
+%dir %{_jvmcommonlibdir}
+%dir %{_jnidir}
+%dir %{_jnidir}-*
+%if "%{_lib}" != "lib"
+%dir %{_ujvmdir}
+%dir %{_ujvmjardir}
+%dir %{_ujvmprivdir}
+%dir %{_ujvmcommonlibdir}
+%dir %{_ujnidir}
+%dir %{_ujnidir}-*
+%endif
+
+# arch independant
 %dir %{_jvmdatadir}
 %dir %{_jvmsysconfdir}
-%dir %{_jvmcommonlibdir}
 %dir %{_jvmcommondatadir}
 %dir %{_jvmcommonsysconfdir}
 %dir %{_javadir}
 %dir %{_javadir}-*
-%dir %{_jnidir}
-%dir %{_jnidir}-*
 %docdir %{_javadocdir}
 %dir %{_javadocdir}
 %{_javadir}-utils/*
