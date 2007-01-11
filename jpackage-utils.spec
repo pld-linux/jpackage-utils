@@ -3,7 +3,7 @@ Summary:	JPackage utilities
 Summary(pl):	Narzêdzia JPackage
 Name:		jpackage-utils
 Version:	1.6.6
-Release:	11
+Release:	11.1
 Epoch:		0
 License:	BSD-like
 Group:		Development/Languages/Java
@@ -82,7 +82,7 @@ install -d $RPM_BUILD_ROOT{%{_bindir},%{_sysconfdir}/java,/etc/env.d} \
 install -pm 755 bin/* $RPM_BUILD_ROOT%{_bindir}
 install -pm 644 etc/font.properties $RPM_BUILD_ROOT%{_sysconfdir}/java
 
-cat > etc/java.conf << EOF
+cat > etc/java.conf << 'EOF'
 # System-wide Java configuration file                                -*- sh -*-
 #
 # JPackage Project <http://www.jpackage.org/>
@@ -97,7 +97,7 @@ JNI_LIBDIR=%{_jnidir}
 JVM_ROOT=%{_jvmdir}
 
 # You can define a system-wide JVM root here if you're not using the default one
-#JAVA_HOME=\$JVM_ROOT/java
+#JAVA_HOME=$JVM_ROOT/java
 
 # Options to pass to the java interpreter
 JAVACMD_OPTS=
@@ -107,10 +107,8 @@ install -pm 644 etc/java.conf $RPM_BUILD_ROOT%{_sysconfdir}/java
 install -pm 644 etc/jpackage-release $RPM_BUILD_ROOT%{_sysconfdir}/java
 install -pm 644 java-utils/* $RPM_BUILD_ROOT%{_javadir}-utils
 
-unset JAVA_HOME || :
-unset JAVACMD || :
 cat << 'EOF' >$RPM_BUILD_ROOT/etc/env.d/JAVA_HOME
-JAVA_HOME=$(. %{_javadir}-utils/java-functions; set_jvm; echo $JAVA_HOME)
+JAVA_HOME=$(. %{_javadir}-utils/java-functions; set_jvm >&2; echo "$JAVA_HOME")
 EOF
 
 %clean
