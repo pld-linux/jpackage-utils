@@ -1,0 +1,11 @@
+--- jpackage-utils-1.6.6/java-utils/java-functions~	2007-01-22 15:59:31.368169398 +0200
++++ jpackage-utils-1.6.6/java-utils/java-functions	2007-01-22 15:59:46.028502570 +0200
+@@ -30,7 +30,7 @@
+ # Set the java virtual machine
+ set_jvm() {
+   # use $JAVA_HOME if defined
+-  if [ -n "$JAVA_HOME" ] ; then
++  if [ -d "$JAVA_HOME" ] ; then
+     return
+   fi
+ 
