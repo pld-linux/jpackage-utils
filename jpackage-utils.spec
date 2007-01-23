@@ -3,7 +3,7 @@ Summary:	JPackage utilities
 Summary(pl):	Narzêdzia JPackage
 Name:		jpackage-utils
 Version:	1.6.6
-Release:	14
+Release:	15
 Epoch:		0
 License:	BSD-like
 Group:		Development/Languages/Java
@@ -11,6 +11,7 @@ Source0:	%{name}-%{version}.tar.bz2
 # Source0-md5:	85336e72018ecefa2f9999fc4e6f3eb8
 Patch0:		%{name}-pdksh.patch
 Patch1:		%{name}-checkdir.patch
+Patch2:		%{name}-errors.patch
 URL:		http://www.jpackage.org/
 BuildRequires:	rpmbuild(macros) >= 1.318
 Requires:	/bin/egrep
@@ -65,6 +66,7 @@ Narzêdzia z projektu JPackage <http://www.jpackage.org/>:
 %setup -q
 %patch0 -p1
 %patch1 -p1
+%patch2 -p1
 
 %build
 echo "JPackage release %{jpackage_distver} (PLD Linux port) for %{buildarch}" > etc/jpackage-release
