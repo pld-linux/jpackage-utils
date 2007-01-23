@@ -1,0 +1,28 @@
+--- package-utils-1.6.6/java-utils/java-functions~	2006-11-30 17:11:17.000000000 +0200
++++ package-utils-1.6.6/java-utils/java-functions	2007-01-24 01:03:00.137485318 +0200
+@@ -86,7 +86,7 @@
+   fi
+ 
+   if [ ! -x "$JAVACMD" ]; then
+-    echo "$0: error: Failed to set JAVACMD"
++    echo "$0: error: Failed to set JAVACMD" >&2
+     return 1
+   fi
+ 
+@@ -159,13 +159,13 @@
+     JAVAVER_JNIDIR=$JNI_LIBDIR-$JAVA_VERSION
+ 
+     if [ ! -d "$JVM_LIBDIR" ]; then
+-        echo "$0: error: JVM_LIBDIR $JVM_LIBDIR does not exist or is not a directory"
++        echo "$0: error: JVM_LIBDIR $JVM_LIBDIR does not exist or is not a directory" >&2
+         return 1
+     elif [ ! -d "$JAVAVER_LIBDIR" ]; then
+-        echo "$0: error: JAVAVER_LIBDIR $JAVAVER_LIBDIR does not exist or is not a directory"
++        echo "$0: error: JAVAVER_LIBDIR $JAVAVER_LIBDIR does not exist or is not a directory" >&2
+         return 1
+     elif [ ! -d "$JAVAVER_JNIDIR" ]; then
+-        echo "$0: error: JAVAVER_JNIDIR $JAVAVER_JNIDIR does not exist or is not a directory"
++        echo "$0: error: JAVAVER_JNIDIR $JAVAVER_JNIDIR does not exist or is not a directory" >&2
+         return 1
+     fi
+ 
