@@ -68,6 +68,9 @@ Narzêdzia z projektu JPackage <http://www.jpackage.org/>:
 %patch1 -p1
 %patch2 -p1
 
+# we cp -a complete dir from source
+find '(' -name '*~' -o -name '*.orig' ')' -print0 | xargs -0 -r -l512 rm -f
+
 %build
 echo "JPackage release %{jpackage_distver} (PLD Linux port) for %{buildarch}" > etc/jpackage-release
 
