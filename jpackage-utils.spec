@@ -1,6 +1,3 @@
-# TODO
-# - update build macros so that pack200 is used to repackage jars to remove debug information
-#   http://java.sun.com/javase/6/docs/technotes/guides/deployment/deployment-guide/pack200.html
 %define 	jpackage_distver 1.6
 Summary:	JPackage utilities
 Summary(pl):	Narzêdzia JPackage
