@@ -1,6 +1,6 @@
 %define 	jpackage_distver 1.6
 Summary:	JPackage utilities
-Summary(pl):	Narzêdzia JPackage
+Summary(pl.UTF-8):   NarzÄ™dzia JPackage
 Name:		jpackage-utils
 Version:	1.6.6
 Release:	15
@@ -39,27 +39,27 @@ Utilities from the JPackage Project <http://www.jpackage.org/>:
 - %{_docdir}/%{name}-%{version}/jpackage-policy Java packaging policy
   for packagers and developers of JPackage Project
 
-%description -l pl
-Narzêdzia z projektu JPackage <http://www.jpackage.org/>:
+%description -l pl.UTF-8
+NarzÄ™dzia z projektu JPackage <http://www.jpackage.org/>:
 
-- %{_bindir}/build-classpath tworzy ¶cie¿kê do klas (classpath) Javy w
-  przeno¶ny sposób
-- %{_bindir}/build-jar-repository tworzy repozytorium jar w przeno¶ny
-  sposób
+- %{_bindir}/build-classpath tworzy Å›cieÅ¼kÄ™ do klas (classpath) Javy w
+  przenoÅ›ny sposÃ³b
+- %{_bindir}/build-jar-repository tworzy repozytorium jar w przenoÅ›ny
+  sposÃ³b
 - %{_bindir}/rebuild-jar-repository przebudowuje repozytorium jar w
-  przeno¶ny sposób (po zmianie jvm)
-- %{_bindir}/build-classpath-directory tworzy ¶cie¿kê do klas
+  przenoÅ›ny sposÃ³b (po zmianie jvm)
+- %{_bindir}/build-classpath-directory tworzy Å›cieÅ¼kÄ™ do klas
   (classpath) Javy z katalogu
-- %{_bindir}/diff-jars pokazuje ró¿nice miêdzy zawarto¶ci± jarów
+- %{_bindir}/diff-jars pokazuje rÃ³Å¼nice miÄ™dzy zawartoÅ›ciÄ… jarÃ³w
 - %{_bindir}/jvmjar instaluje rozszerzenia jvm
-- %{_datadir}/java-utils/java-functions to biblioteka funkcji skryptów
-  pow³oki dla aplikacji w Javie
-- %{_sysconfdir}/java/jpackage-release to ³añcuch okre¶laj±cy
+- %{_datadir}/java-utils/java-functions to biblioteka funkcji skryptÃ³w
+  powÅ‚oki dla aplikacji w Javie
+- %{_sysconfdir}/java/jpackage-release to Å‚aÅ„cuch okreÅ›lajÄ…cy
   aktualnie zainstalowane wydanie JPackage
-- %{_sysconfdir}/java/java.conf to ogólnosystemowy plik konfiguracyjny
+- %{_sysconfdir}/java/java.conf to ogÃ³lnosystemowy plik konfiguracyjny
   Javy
 - %{_docdir}/%{name}-%{version}/jpackage-policy to polityka
-  pakietowania Javy dla osób pakietuj±cych i programistów z projektu
+  pakietowania Javy dla osÃ³b pakietujÄ…cych i programistÃ³w z projektu
   JPackage
 
 %prep
