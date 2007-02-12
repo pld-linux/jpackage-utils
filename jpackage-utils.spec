@@ -1,6 +1,6 @@
 %define 	jpackage_distver 1.6
 Summary:	JPackage utilities
-Summary(pl.UTF-8):   Narzędzia JPackage
+Summary(pl.UTF-8):	Narzędzia JPackage
 Name:		jpackage-utils
 Version:	1.6.6
 Release:	15
