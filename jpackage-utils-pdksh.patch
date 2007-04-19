@@ -1,6 +1,5 @@
-diff -dur -x '*~' jpackage-utils-1.6.6.orig/java-utils/java-functions jpackage-utils-1.6.6/java-utils/java-functions
---- jpackage-utils-1.6.6.orig/java-utils/java-functions	2005-09-17 08:58:21.000000000 +0200
-+++ jpackage-utils-1.6.6/java-utils/java-functions	2006-05-19 15:20:00.000000000 +0200
+--- jpackage-utils-1.6.6/java-utils/java-functions	2006-05-19 15:20:00.000000000 +0200
++++ jpackage-utils-1.6.6/java-utils/java-functions	2007-04-19 20:46:06.076850536 +0300
 @@ -146,7 +146,7 @@
          # Yuck, "grep -o" would be cleaner, but requires GNU grep >= 2.5.
          # This could be improved/simplified if sed had non-greedy matching.
@@ -10,3 +9,21 @@ diff -dur -x '*~' jpackage-utils-1.6.6.orig/java-utils/java-functions jpackage-u
              -e '/java \(full \)*version "/s/.*<<<\([^>]\{1,\}\)>>>.*/\1/p')
          if [ -n "$JAVA_VERSION" ] ; then
              break
+@@ -217,7 +217,7 @@
+    [ -z "$_LINK_CMD" ] && _LINK_CMD="/bin/ln -fs"
+    extension_list="$extension_list $@"
+ 
+-   pushd $repository > /dev/null
++   cd $repository > /dev/null
+       _ALLFOUND=0
+       for extension in $extension_list ; do
+          extension=$(echo $extension | sed 's+/$++g' | sed 's+\.jar$++g')
+@@ -244,7 +244,7 @@
+             _ALLFOUND=1
+          fi
+       done
+-   popd $repository > /dev/null
++   cd -> /dev/null
+    return $_ALLFOUND
+ }
+ 
