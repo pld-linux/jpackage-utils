@@ -1,11 +1,9 @@
-# TODO
-# - bashism kill: /usr/bin/build-jar-repository[48]: pushd: not found
 %define 	jpackage_distver 1.6
 Summary:	JPackage utilities
 Summary(pl.UTF-8):	Narzędzia JPackage
 Name:		jpackage-utils
 Version:	1.6.6
-Release:	15
+Release:	16
 Epoch:		0
 License:	BSD-like
 Group:		Development/Languages/Java
