@@ -27,3 +27,15 @@
     return $_ALLFOUND
  }
  
+--- jpackage-utils-1.7.3/bin/find-jar~	2006-09-19 22:55:46.000000000 +0300
++++ jpackage-utils-1.7.3/bin/find-jar	2007-12-11 18:39:55.237824072 +0200
+@@ -30,7 +30,7 @@
+ find_jar $1
+ 
+ if [ $? != 0 ]; then
+-   echo $"Could not find the requested jar or jar directory." >&2
+-   echo $"Please check the correct JAVA_HOME is set." >&2
++   echo "Could not find the requested jar or jar directory." >&2
++   echo "Please check the correct JAVA_HOME is set." >&2
+    exit 6
+ fi
