@@ -1,5 +1,3 @@
-# TODO
-# - sync -pl
 %define 	jpackage_distver 1.7
 Summary:	JPackage utilities
 Summary(pl.UTF-8):	Narzędzia JPackage
@@ -49,18 +47,19 @@ general use with maven2, a header file for spec files etc.
 %description -l pl.UTF-8
 Narzędzia z projektu JPackage <http://www.jpackage.org/>:
 
-- build-classpath - tworzy ścieżkę do klas (classpath) Javy w
-  przenośny sposób
-- build-jar-repository - tworzy repozytorium jar w przenośny sposób
+- build-classpath - tworzy ścieżkę do klas (classpath) Javy w sposób
+  przenośny
+- build-jar-repository - tworzy repozytorium jar w sposób przenośny
 - rebuild-jar-repository - przebudowuje repozytorium jar w przenośny
   sposób (po zmianie jvm)
 - build-classpath-directory - tworzy ścieżkę do klas (classpath)
   Javy z katalogu
 - diff-jars - pokazuje różnice między zawartością jarów
 - jvmjar - instaluje rozszerzenia jvm
-- create-jar-links - create custom jar links
-- clean-binary-files - remove binary files from sources
-- check-binary-files - check for presence of unexpected binary files
+- create-jar-links - tworzy własne dowiązania do jarów
+- clean-binary-files - usuwa binarne pliki ze źródeł
+- check-binary-files - sprawdza istnienie nieoczekiwanych plików
+  binarnych
 - %{_datadir}/java-utils/java-functions to biblioteka funkcji
   skryptów powłoki dla aplikacji w Javie
 - %{_sysconfdir}/java/jpackage-release to łańcuch określający
@@ -71,8 +70,8 @@ Narzędzia z projektu JPackage <http://www.jpackage.org/>:
   pakietowania Javy dla osób pakietujących i programistów z projektu
   JPackage
 
-It contains also the License, man pages, documentation, XSL files of
-general use with maven2, a header file for spec files etc.
+Pakiet zawiera także treść licencji, strony manuala, dokumentację,
+pliki XSL dla programu maven2, plik nagłówkowy dla plików spec itp.
 
 %prep
 %setup -q
