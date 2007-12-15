@@ -47,18 +47,18 @@ general use with maven2, a header file for spec files etc.
 %description -l pl.UTF-8
 Narzędzia z projektu JPackage <http://www.jpackage.org/>:
 
-- build-classpath - tworzy ścieżkę do klas (classpath) Javy w sposób
+- build-classpath tworzy ścieżkę do klas (classpath) Javy w sposób
   przenośny
-- build-jar-repository - tworzy repozytorium jar w sposób przenośny
-- rebuild-jar-repository - przebudowuje repozytorium jar w przenośny
+- build-jar-repository tworzy repozytorium jar w sposób przenośny
+- rebuild-jar-repository przebudowuje repozytorium jar w przenośny
   sposób (po zmianie jvm)
-- build-classpath-directory - tworzy ścieżkę do klas (classpath)
-  Javy z katalogu
-- diff-jars - pokazuje różnice między zawartością jarów
-- jvmjar - instaluje rozszerzenia jvm
-- create-jar-links - tworzy własne dowiązania do jarów
-- clean-binary-files - usuwa binarne pliki ze źródeł
-- check-binary-files - sprawdza istnienie nieoczekiwanych plików
+- build-classpath-directory tworzy ścieżkę do klas (classpath) Javy
+  z katalogu
+- diff-jars pokazuje różnice między zawartością jarów
+- jvmjar instaluje rozszerzenia jvm
+- create-jar-links tworzy własne dowiązania do jarów
+- clean-binary-files usuwa binarne pliki ze źródeł
+- check-binary-files sprawdza istnienie nieoczekiwanych plików
   binarnych
 - %{_datadir}/java-utils/java-functions to biblioteka funkcji
   skryptów powłoki dla aplikacji w Javie
