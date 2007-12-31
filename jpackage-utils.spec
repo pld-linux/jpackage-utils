@@ -3,7 +3,7 @@ Summary:	JPackage utilities
 Summary(pl.UTF-8):	Narzędzia JPackage
 Name:		jpackage-utils
 Version:	1.7.3
-Release:	1
+Release:	2
 Epoch:		0
 License:	BSD-like
 Group:		Development/Languages/Java
