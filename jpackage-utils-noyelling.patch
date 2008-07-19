@@ -1,0 +1,11 @@
+diff -urN jpackage-utils-1.7.3.org/java-utils/java-functions jpackage-utils-1.7.3/java-utils/java-functions
+--- jpackage-utils-1.7.3.org/java-utils/java-functions	2006-10-26 16:48:05.000000000 +0200
++++ jpackage-utils-1.7.3/java-utils/java-functions	2008-07-19 10:48:36.799293016 +0200
+@@ -14,7 +14,6 @@
+ if [ -f /etc/java/java.conf ] ; then
+   . /etc/java/java.conf
+ else
+-  echo "Can't find configuration file, aborting"
+   exit 1
+ fi
+ 
