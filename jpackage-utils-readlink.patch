@@ -1,0 +1,11 @@
+--- jpackage-utils-1.7.3/java-utils/java-functions~	2008-07-28 14:41:28.925168524 +0200
++++ jpackage-utils-1.7.3/java-utils/java-functions	2008-07-28 14:41:41.534750707 +0200
+@@ -45,7 +45,7 @@
+ 
+   if [ -n "$java" ] ; then
+     while [ -h "$java" ] ; do
+-      java=`readlink $java 2>/dev/null`
++      java=`readlink -m $java 2>/dev/null`
+     done
+     JAVA_HOME="`dirname $java`/.."
+     export JAVA_HOME
