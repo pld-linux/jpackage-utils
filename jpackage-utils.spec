@@ -18,6 +18,7 @@ URL:		http://www.jpackage.org/
 BuildRequires:	rpmbuild(macros) >= 1.409
 Requires:	/bin/egrep
 Requires:	/bin/sed
+Requires:	which
 Conflicts:	rpmbuild(macros) < 1.409
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
