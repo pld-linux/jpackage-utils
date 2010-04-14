@@ -3,7 +3,7 @@ Summary:	JPackage utilities
 Summary(pl.UTF-8):	Narzędzia JPackage
 Name:		jpackage-utils
 Version:	1.7.5
-Release:	1
+Release:	2
 Epoch:		0
 License:	BSD-like
 Group:		Development/Languages/Java
@@ -94,7 +94,7 @@ echo "JPackage release %{jpackage_distver} (PLD Linux port) for %{_build_arch}" 
 rm -rf $RPM_BUILD_ROOT
 
 # arch independant
-install -d $RPM_BUILD_ROOT{%{_bindir},%{_sysconfdir}/java,/etc/env.d,%{_javadocdir},%{_javadir}} \
+install -d $RPM_BUILD_ROOT{%{_bindir},%{_sysconfdir}/java,/etc/env.d,%{_javadocdir},%{_javasrcdir},%{_javadir}} \
 	$RPM_BUILD_ROOT{%{_jvmsysconfdir},%{_jvmcommondatadir},%{_jvmdatadir},%{_jvmcommonsysconfdir}} \
 	$RPM_BUILD_ROOT%{_javadir}-{utils,ext,1.4.0,1.4.1,1.4.2,1.5.0,1.6.0} \
 	$RPM_BUILD_ROOT%{_mavendepmapdir}
@@ -183,6 +183,8 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_javadir}-*
 %docdir %{_javadocdir}
 %dir %{_javadocdir}
+%docdir %{_javasrcdir}
+%dir %{_javasrcdir}
 
 # arch dependant
 %dir %{_jvmdir}
