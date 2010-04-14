@@ -15,7 +15,7 @@ Patch2:		%{name}-errors.patch
 Patch3:		%{name}-noyelling.patch
 Patch4:		%{name}-readlink.patch
 URL:		http://www.jpackage.org/
-BuildRequires:	rpmbuild(macros) >= 1.409
+BuildRequires:	rpmbuild(macros) >= 1.555
 Requires:	/bin/egrep
 Requires:	/bin/sed
 Requires:	which
