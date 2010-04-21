@@ -1,0 +1,11 @@
+--- jpackage-utils-1.7.5/java-utils/java-functions.orig	2010-04-21 13:30:51.000000000 +0200
++++ jpackage-utils-1.7.5/java-utils/java-functions	2010-04-21 13:31:54.000000000 +0200
+@@ -130,7 +130,7 @@
+ # Requires a correct $JAVA_LIBDIR, $JAVA_HOME and $JAVA_CMD
+ set_jvm_dirs() {
+     # Jar repository provided by the JVM
+-    JVM_LIBDIR=$JVM_ROOT-exports/$(echo "$JAVA_HOME" |\
++    JVM_LIBDIR=$JVM_ROOT-exports/$(readlink -f "$JAVA_HOME" |\
+         sed -n "s+$JVM_ROOT/\([-_[:alnum:].]*\)\(.*\)+\1+p")
+ 
+     # Java standard version of the JVM.  -fullversion seems to be lot faster
