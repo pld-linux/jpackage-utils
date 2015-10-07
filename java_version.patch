@@ -1,0 +1,14 @@
+diff -dur jpackage-utils-1.7.5.orig/java-utils/java-functions jpackage-utils-1.7.5/java-utils/java-functions
+--- jpackage-utils-1.7.5.orig/java-utils/java-functions	2015-10-07 10:31:46.000000000 +0200
++++ jpackage-utils-1.7.5/java-utils/java-functions	2015-10-07 10:32:36.000000000 +0200
+@@ -145,8 +145,8 @@
+         # Yuck, "grep -o" would be cleaner, but requires GNU grep >= 2.5.
+         # This could be improved/simplified if sed had non-greedy matching.
+         JAVA_VERSION=$($JAVACMD $opt 2>&1 | sed -n \
+-            -e '/java \(full \)*version "/s/'"$re"'/<<<\1>>>/' \
+-            -e '/java \(full \)*version "/s/.*<<<\([^>]\{1,\}\)>>>.*/\1/p')
++            -e '/\(java\|openjdk\) \(full \)*version "/s/'"$re"'/<<<\1>>>/' \
++            -e '/\(java\|openjdk\) \(full \)*version "/s/.*<<<\([^>]\{1,\}\)>>>.*/\1/p')
+         if [ -n "$JAVA_VERSION" ] ; then
+             break
+         fi
