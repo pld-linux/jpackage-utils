@@ -8,8 +8,8 @@ diff -dur jpackage-utils-1.7.5.orig/java-utils/java-functions jpackage-utils-1.7
 -            -e '/java \(full \)*version "/s/'"$re"'/<<<\1>>>/' \
 -            -e '/java \(full \)*version "/s/.*<<<\([^>]\{1,\}\)>>>.*/\1/p')
 +            -e '/\(java\|openjdk\) \(full \)*version "/s/'"$re"'/<<<\1>>>/' \
-+            -e '/\(java\|openjdk\) \(full \)*version "/s/.*<<<\([^>]\{1,\}\)>>>.*/\1/p') \
-+            | sed '/^1\./!s/^\([[:digit:]]\{1,\}\).*/\1/'
++            -e '/\(java\|openjdk\) \(full \)*version "/s/.*<<<\([^>]\{1,\}\)>>>.*/\1/p' \
++            | sed '/^1\./!s/^\([[:digit:]]\{1,\}\).*/\1/')
          if [ -n "$JAVA_VERSION" ] ; then
              break
          fi
