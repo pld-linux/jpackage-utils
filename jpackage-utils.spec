@@ -3,7 +3,7 @@ Summary:	JPackage utilities
 Summary(pl.UTF-8):	Narzędzia JPackage
 Name:		jpackage-utils
 Version:	1.7.5
-Release:	9
+Release:	10
 License:	BSD-like
 Group:		Development/Languages/Java
 Source0:	%{name}-%{version}.tar.bz2
@@ -99,13 +99,13 @@ rm -rf $RPM_BUILD_ROOT
 # arch independant
 install -d $RPM_BUILD_ROOT{%{_bindir},%{_sysconfdir}/java,/etc/env.d,%{_javadocdir},%{_javasrcdir},%{_javadir}} \
 	$RPM_BUILD_ROOT{%{_jvmsysconfdir},%{_jvmcommondatadir},%{_jvmdatadir},%{_jvmcommonsysconfdir}} \
-	$RPM_BUILD_ROOT%{_javadir}-{utils,ext,1.4.0,1.4.1,1.4.2,1.5.0,1.6.0,1.7.0,1.8.0,9} \
+	$RPM_BUILD_ROOT%{_javadir}-{utils,ext,1.4.0,1.4.1,1.4.2,1.5.0,1.6.0,1.7.0,1.8.0,9,10} \
 	$RPM_BUILD_ROOT%{_mavendepmapdir}
 
 # arch dependant
 install -d \
 	$RPM_BUILD_ROOT{%{_jvmdir},%{_jvmjardir},%{_jvmprivdir},%{_jvmcommonlibdir},%{_jnidir}} \
-	$RPM_BUILD_ROOT%{_jnidir}-{ext,1.4.0,1.4.1,1.4.2,1.5.0,1.6.0,1.7.0,1.8.0,9}
+	$RPM_BUILD_ROOT%{_jnidir}-{ext,1.4.0,1.4.1,1.4.2,1.5.0,1.6.0,1.7.0,1.8.0,9,10}
 
 %if "%{_lib}" != "lib"
 %define _ujvmdir			%{_prefix}/lib/jvm
@@ -117,7 +117,7 @@ install -d \
 
 install -d \
 	$RPM_BUILD_ROOT{%{_ujvmdir},%{_ujvmjardir},%{_ujvmprivdir},%{_ujvmcommonlibdir},%{_ujnidir}} \
-	$RPM_BUILD_ROOT%{_ujnidir}-{ext,1.4.0,1.4.1,1.4.2,1.5.0,1.6.0,1.7.0,1.8.0,9}
+	$RPM_BUILD_ROOT%{_ujnidir}-{ext,1.4.0,1.4.1,1.4.2,1.5.0,1.6.0,1.7.0,1.8.0,9,10}
 %endif
 
 install -pm 755 bin/* $RPM_BUILD_ROOT%{_bindir}
