@@ -23,6 +23,8 @@ Requires:	which
 Conflicts:	rpmbuild(macros) < 1.409
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
+%define		_enable_debug_packages	0
+
 %description
 Utilities from the JPackage Project <http://www.jpackage.org/>:
 
