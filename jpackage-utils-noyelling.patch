@@ -8,4 +8,4 @@ diff -urN jpackage-utils-1.7.3.org/java-utils/java-functions jpackage-utils-1.7.
 -  echo "Can't find configuration file, aborting"
    exit 1
  fi
- 
+

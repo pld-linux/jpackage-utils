@@ -3,7 +3,7 @@ Summary:	JPackage utilities
 Summary(pl.UTF-8):	Narzędzia JPackage
 Name:		jpackage-utils
 Version:	1.7.5
-Release:	12
+Release:	13
 License:	BSD-like
 Group:		Development/Languages/Java
 Source0:	%{name}-%{version}.tar.bz2
@@ -159,7 +159,7 @@ install -d $RPM_BUILD_ROOT%{_javadir}-utils/xml
 cp -a xml/* $RPM_BUILD_ROOT%{_javadir}-utils/xml
 
 cat << 'EOF' >$RPM_BUILD_ROOT/etc/env.d/JAVA_HOME
-JAVA_HOME=$(. %{_javadir}-utils/java-functions; set_jvm >&2; echo "$JAVA_HOME")
+JAVA_HOME=$(. %{_javadir}-utils/java-functions 2>/dev/null; set_jvm >/dev/null 2>&1; echo "$JAVA_HOME")
 EOF
 
 %clean
