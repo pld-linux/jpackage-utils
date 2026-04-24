@@ -3,7 +3,7 @@ Summary:	JPackage utilities
 Summary(pl.UTF-8):	Narzędzia JPackage
 Name:		jpackage-utils
 Version:	1.7.5
-Release:	13
+Release:	14
 License:	BSD-like
 Group:		Development/Languages/Java
 Source0:	%{name}-%{version}.tar.bz2
@@ -11,10 +11,9 @@ Source0:	%{name}-%{version}.tar.bz2
 Patch0:		%{name}-pdksh.patch
 Patch1:		%{name}-checkdir.patch
 Patch2:		%{name}-errors.patch
-Patch3:		%{name}-noyelling.patch
-Patch4:		%{name}-readlink.patch
-Patch5:		%{name}-jvm_exports_via_link.patch
-Patch6:		java_version.patch
+Patch3:		%{name}-readlink.patch
+Patch4:		%{name}-jvm_exports_via_link.patch
+Patch5:		java_version.patch
 URL:		http://www.jpackage.org/
 BuildRequires:	rpmbuild(macros) >= 1.555
 Requires:	/bin/egrep
@@ -87,7 +86,6 @@ pliki XSL dla programu maven2, plik nagłówkowy dla plików spec itp.
 %patch -P3 -p1
 %patch -P4 -p1
 %patch -P5 -p1
-%patch -P6 -p1
 
 # we cp -a complete dir from source
 find '(' -name '*~' -o -name '*.orig' ')' -print0 | xargs -0 -r -l512 rm -f
@@ -159,7 +157,7 @@ install -d $RPM_BUILD_ROOT%{_javadir}-utils/xml
 cp -a xml/* $RPM_BUILD_ROOT%{_javadir}-utils/xml
 
 cat << 'EOF' >$RPM_BUILD_ROOT/etc/env.d/JAVA_HOME
-JAVA_HOME=$(. %{_javadir}-utils/java-functions 2>/dev/null; set_jvm >/dev/null 2>&1; echo "$JAVA_HOME")
+JAVA_HOME=$(. %{_javadir}-utils/java-functions >/dev/null 2>&1 && set_jvm >/dev/null 2>&1 && echo "$JAVA_HOME")
 EOF
 
 %clean

@@ -1,6 +1,37 @@
---- package-utils-1.6.6/java-utils/java-functions~	2006-11-30 17:11:17.000000000 +0200
-+++ package-utils-1.6.6/java-utils/java-functions	2007-01-24 01:03:00.137485318 +0200
-@@ -86,7 +86,7 @@
+--- jpackage-utils-1.7.5/java-utils/java-functions.orig	2026-04-24 12:48:34.924675953 +0200
++++ jpackage-utils-1.7.5/java-utils/java-functions	2026-04-24 13:02:16.799853956 +0200
+@@ -14,8 +14,8 @@
+ if [ -f /etc/java/java.conf ] ; then
+   . /etc/java/java.conf
+ else
+-  echo "Can't find configuration file, aborting"
+-  exit 1
++  echo "Can't find configuration file, aborting" >&2
++  return 1
+ fi
+ 
+ # Read user configuration file if it exists
+@@ -53,8 +53,8 @@
+     return
+   fi
+ 
+-  echo "Can't find java virtual machine, aborting."
+-  exit 1
++  echo "Can't find java virtual machine, aborting." >&2
++  return 1
+ }
+ 
+ # Set the classpath
+@@ -74,7 +74,7 @@
+   if [ -x "$JAVACMD" ]; then
+     return
+   fi
+-  set_jvm
++  set_jvm || return 1
+   # Add all sorts of jvm layouts here
+   if [ -x "$JAVA_HOME/jre/sh/java" ]; then
+     JAVACMD="$JAVA_HOME/jre/sh/java"
+@@ -85,7 +85,7 @@
    fi
  
    if [ ! -x "$JAVACMD" ]; then
@@ -26,3 +57,12 @@
          return 1
      fi
  
+@@ -205,7 +205,7 @@
+                repository=$1
+                if ! [ -d "$repository" -a -w "$repository" ] ; then
+                   echo "$0: error: $1 must be a writable directory" >&2
+-                  exit 1
++                  return 1
+                fi
+             else
+                extension_list="$extension_list $1"
