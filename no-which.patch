@@ -1,0 +1,25 @@
+--- jpackage-utils-1.7.5/java-utils/java-functions.orig	2026-05-07 01:27:33.158554132 +0200
++++ jpackage-utils-1.7.5/java-utils/java-functions	2026-05-07 01:29:06.790627562 +0200
+@@ -37,11 +37,11 @@
+   # try to find it from java command
+ 
+   # try javac first, or we might get the location of the jre instead - djw
+-  java=`which javac 2>/dev/null || :`
++  java=`command -v javac 2>/dev/null || :`
+ 
+   # if we don't have the jdk, then maybe we have the jre - djw
+   if [ -z "$java" ] ; then
+-    java=`which java 2>/dev/null || :`
++    java=`command -v java 2>/dev/null || :`
+   fi
+ 
+   if [ -n "$java" ] ; then
+@@ -81,7 +81,7 @@
+   elif [ -x "$JAVA_HOME/bin/java" ]; then
+     JAVACMD="$JAVA_HOME/bin/java"
+   else
+-    JAVACMD=`which java 2>/dev/null`
++    JAVACMD=`command -v java 2>/dev/null`
+   fi
+ 
+   if [ ! -x "$JAVACMD" ]; then

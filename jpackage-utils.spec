@@ -3,7 +3,7 @@ Summary:	JPackage utilities
 Summary(pl.UTF-8):	Narzędzia JPackage
 Name:		jpackage-utils
 Version:	1.7.5
-Release:	14
+Release:	15
 License:	BSD-like
 Group:		Development/Languages/Java
 Source0:	%{name}-%{version}.tar.bz2
@@ -14,11 +14,11 @@ Patch2:		%{name}-errors.patch
 Patch3:		%{name}-readlink.patch
 Patch4:		%{name}-jvm_exports_via_link.patch
 Patch5:		java_version.patch
+Patch6:		no-which.patch
 URL:		http://www.jpackage.org/
 BuildRequires:	rpmbuild(macros) >= 1.555
 Requires:	/bin/egrep
 Requires:	/bin/sed
-Requires:	which
 Conflicts:	rpmbuild(macros) < 1.409
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -86,6 +86,7 @@ pliki XSL dla programu maven2, plik nagłówkowy dla plików spec itp.
 %patch -P3 -p1
 %patch -P4 -p1
 %patch -P5 -p1
+%patch -P6 -p1
 
 # we cp -a complete dir from source
 find '(' -name '*~' -o -name '*.orig' ')' -print0 | xargs -0 -r -l512 rm -f
