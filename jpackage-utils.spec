@@ -3,7 +3,7 @@ Summary:	JPackage utilities
 Summary(pl.UTF-8):	Narzędzia JPackage
 Name:		jpackage-utils
 Version:	1.7.5
-Release:	16
+Release:	17
 License:	BSD-like
 Group:		Development/Languages/Java
 Source0:	%{name}-%{version}.tar.bz2
@@ -18,8 +18,11 @@ Patch6:		no-which.patch
 Patch7:		fallback-jvm.patch
 URL:		http://www.jpackage.org/
 BuildRequires:	rpmbuild(macros) >= 1.555
+Requires:	/bin/awk
 Requires:	/bin/egrep
 Requires:	/bin/sed
+Requires:	coreutils
+Requires:	findutils
 Conflicts:	rpmbuild(macros) < 1.409
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
