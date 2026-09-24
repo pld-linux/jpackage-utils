@@ -1,0 +1,47 @@
+--- jpackage-utils-1.7.5/java-utils/java-functions.old	2026-09-25 00:20:50.618607318 +0200
++++ jpackage-utils-1.7.5/java-utils/java-functions	2026-09-25 00:19:10.012745470 +0200
+@@ -27,6 +27,33 @@
+ [ -z "$JAVA_HOME" -a -d "$JVM_ROOT/java" ] && JAVA_HOME="$JVM_ROOT/java"
+ [ -z "$JAVA_HOME" -a -d "$JVM_ROOT/jre" ] && JAVA_HOME="$JVM_ROOT/jre"
+ 
++_find_fallback_jvm() {
++  local preferred_version=$1 jvm_selection_cmd java_home
++  
++  if [ -n "$1" ]; then
++    # if preferred version is passed take first version which is exactly the same or nearest higher version
++    jvm_selection_cmd="sort -n -k1,1 -k2,2r | awk '\$1>=$preferred_version { print \$0; exit }'"
++  else
++    # with no preference take the highest version installed
++    jvm_selection_cmd="sort -nr -k1,2 | head -n1"
++  fi
++
++  java_home=$(find "$JVM_ROOT" -name java -type f -executable  | # all java executables \
++    xargs -r -I{} sh -c 'printf "%s %s\n" "$({} -version 2>&1 | awk "\$2 == \"version\" { gsub(/\"/,\"\",\$3); print \$3 }")" "{}"' | # format as <version> <java path> \
++    awk 'BEGIN { FS="." } $1==1 { print $2 " " $0 } $1>1 { print $1 " " $0 }' | # prefix with feature version <feature> <version> <java path> \
++    eval $jvm_selection_cmd  | # select row according to criteria \
++    cut -f3- -d' ' | # extract java path \
++    sed 's;\(^'$JVM_ROOT'/[^/]*\).*;\1;') # use only $JVM_ROOT subdir
++
++  if [ -d "$java_home" ]; then
++    JAVA_HOME="$java_home"
++    export JAVA_HOME
++    return 0
++  fi
++
++  return 1
++}
++
+ # Set the java virtual machine
+ set_jvm() {
+   # use $JAVA_HOME if defined
+@@ -53,6 +80,10 @@
+     return
+   fi
+ 
++  if _find_fallback_jvm "$@"; then
++    return
++  fi
++
+   echo "Can't find java virtual machine, aborting." >&2
+   return 1
+ }
