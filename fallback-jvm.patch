@@ -1,13 +1,17 @@
---- jpackage-utils-1.7.5/java-utils/java-functions.old	2026-09-25 00:20:50.618607318 +0200
-+++ jpackage-utils-1.7.5/java-utils/java-functions	2026-09-25 00:19:10.012745470 +0200
-@@ -27,6 +27,33 @@
- [ -z "$JAVA_HOME" -a -d "$JVM_ROOT/java" ] && JAVA_HOME="$JVM_ROOT/java"
- [ -z "$JAVA_HOME" -a -d "$JVM_ROOT/jre" ] && JAVA_HOME="$JVM_ROOT/jre"
+--- jpackage-utils-1.7.5/java-utils/java-functions.orig	2026-10-10 22:27:08.564685442 +0200
++++ jpackage-utils-1.7.5/java-utils/java-functions	2026-10-10 22:27:59.889274262 +0200
+@@ -57,6 +57,37 @@
+   return 1
+ }
  
-+_find_fallback_jvm() {
++find_jvm() {
 +  local preferred_version=$1 jvm_selection_cmd java_home
++
++  if set_jvm 2> /dev/null; then
++    return
++  fi
 +  
-+  if [ -n "$1" ]; then
++  if [ -n "$preferred_version" ]; then
 +    # if preferred version is passed take first version which is exactly the same or nearest higher version
 +    jvm_selection_cmd="sort -n -k1,1 -k2,2r | awk '\$1>=$preferred_version { print \$0; exit }'"
 +  else
@@ -31,17 +35,6 @@
 +  return 1
 +}
 +
- # Set the java virtual machine
- set_jvm() {
-   # use $JAVA_HOME if defined
-@@ -53,6 +80,10 @@
-     return
-   fi
- 
-+  if _find_fallback_jvm "$@"; then
-+    return
-+  fi
-+
-   echo "Can't find java virtual machine, aborting." >&2
-   return 1
- }
+ # Set the classpath
+ # This requires a valid JAVA_HOME, JAVACMD, and JAVA_LIBDIR
+ set_classpath() {
